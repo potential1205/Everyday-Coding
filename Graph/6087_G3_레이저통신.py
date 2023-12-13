@@ -1,40 +1,41 @@
 from collections import deque
 
-dx = [-1,1,0,0]
-dy = [0,0,-1,1]
-
-def bfs():
-    start, end = point[0], point[1]
-    queue = deque([[start[0],start[1],0]])
-    visit = [[False for j in range(w)] for i in range(h)]
-
-
-    while queue:
-        y,x,cnt = queue.popleft()
-
-        if y==end[0] and x==end[1]:
-            return cnt
-        
-        for i in range(4):
-            ky,kx = y+dy[i], x+dx[i]
-            if 0<=kx and kx<w and 0<= ky and ky<h and visit[ky][kx]==False and board[ky][kx] != '*':
-                visit[ky][kx]=True
-                queue.append([ky,kx,cnt+1])
+def solution():
+    queue = deque()
+    for i in range(4):
+        queue.append([sy,sx,i,0])
     
-    return cnt
+    while queue:
+        y, x, direct, cnt = queue.popleft()
+
+        for i in range(4):
+            ky, kx = y+dy[i], x+dx[i]
+
+            if 0<=ky<h and 0<=kx<w and board[ky][kx] != "*":
+                new_cnt = cnt + 1 if direct != i else cnt
+
+                if visit[i][ky][kx] > new_cnt:
+                    visit[i][ky][kx] = new_cnt
+                    queue.append([ky,kx,i,new_cnt])
 
 
+    return min(visit[0][ey][ex],visit[1][ey][ex],visit[2][ey][ex],visit[3][ey][ex])
 
 
+if __name__ == "__main__":
+    w,h = map(int,input().split())
+    board = [input() for _ in range(h)]
 
-w,h = map(int,input().split())
-board, point = [], []
+    dx = (-1,1,0,0)
+    dy = (0,0,-1,1)
 
-for i in range(h):
-    line = input()
-    for j in range(w):
-        if line[j]=='C':
-            point.append([i,j])
-    board.append(line)
+    C = []
+    for i in range(h):
+        for j in range(w):
+            if board[i][j]=='C':
+                C.append([i,j])
 
-print(bfs())
+    (sy,sx),(ey,ex) = C
+
+    visit = [[[float("inf") for k in range(w)] for j in range(h)] for i in range(4)]
+    print(solution())
