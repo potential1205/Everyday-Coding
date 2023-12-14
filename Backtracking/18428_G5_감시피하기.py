@@ -23,12 +23,11 @@ def solution(cnt):
             exit()
     
     else:
-        for i in range(n):
-            for j in range(n):
-                if board[i][j] == 'X':
-                    board[i][j] = 'O'
-                    solution(cnt+1)
-                    board[i][j] = 'X'
+        for i,j in emptys:
+            if board[i][j] == 'X':
+                board[i][j] = 'O'
+                solution(cnt+1)
+                board[i][j] = 'X'
 
 
 if __name__ == "__main__":
@@ -46,5 +45,3 @@ if __name__ == "__main__":
 
     solution(0)
     print("NO")
-    
-   
