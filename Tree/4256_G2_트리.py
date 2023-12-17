@@ -1,17 +1,32 @@
 import sys
 input = sys.stdin.readline
 
-def dfs(root,s,e):
-    for i in range(s,e):
-        if inorder[i] == preorder[root]:
-            dfs(root+1,s,i)
-            dfs(root+i+1-s, i+1, e)
-            print(preorder[root],end=' ')
+def solution(preorder, inorder):
+    if len(preorder) == 0:
+        return
 
-t = int(input().rstrip())
-for _ in range(t):
-    n = int(input().rstrip())
-    preorder = list(map(int,input().rstrip().split()))
-    inorder = list(map(int,input().rstrip().split()))
-    dfs(0,0,n)
-    print("")
+    root = preorder[0]
+    mid_index = inorder.index(root)
+
+    inorder_left = inorder[:mid_index]
+    inorder_right = inorder[mid_index+1:]
+
+    preorder_left = preorder[1:mid_index+1]
+    preorder_right = preorder[mid_index+1:]
+
+    solution(preorder_left, inorder_left)
+    solution(preorder_right, inorder_right)
+    print(root,end=' ')
+    #result.append(root)
+
+
+if __name__ == "__main__":
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        preorder = list(map(int,input().split()))
+        inorder = list(map(int,input().split()))
+        result = []
+        solution(preorder, inorder)
+        print()
+        #print(*result)
