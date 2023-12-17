@@ -17,7 +17,6 @@ def solution(preorder, inorder):
     solution(preorder_left, inorder_left)
     solution(preorder_right, inorder_right)
     print(root,end=' ')
-    #result.append(root)
 
 
 if __name__ == "__main__":
@@ -26,7 +25,5 @@ if __name__ == "__main__":
         n = int(input())
         preorder = list(map(int,input().split()))
         inorder = list(map(int,input().split()))
-        result = []
         solution(preorder, inorder)
         print()
-        #print(*result)
