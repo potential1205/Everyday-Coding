@@ -11,11 +11,10 @@ def solution(s,t,lens,lent):
     t2 = t[::-1]
 
     if t1[-1] == 'A':
-        print(t1[:lent-1])
         solution(s,t1[:lent-1],lens,lent-1)
 
     if t2[-1] == 'B':
-        solution(s,t1[:lent-1],lens,lent-1)
+        solution(s,t2[:lent-1],lens,lent-1)
 
     return
     
