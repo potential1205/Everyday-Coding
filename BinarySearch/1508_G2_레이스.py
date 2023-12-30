@@ -4,7 +4,7 @@ if __name__ == "__main__":
     n,m,k = map(int,input().split())
     lst = list(map(int,input().split()))
 
-    start, end = 0, lst[-1]-lst[0]
+    start, end = 1, lst[-1]-lst[0]
     result = []
 
     while start <= end:
