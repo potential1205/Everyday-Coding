@@ -10,6 +10,7 @@ def bfs(sy,sx,ey,ex):
     queue = deque([[sy,sx,0]])
     visit = [[False for j in range(w)] for i in range(h)]
     cnt=0
+    
     while queue:
         y,x,cnt = queue.popleft()
 

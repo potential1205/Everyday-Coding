@@ -35,6 +35,7 @@ if __name__ == "__main__":
 
     val1 = solution(x1)
     val2 = solution(x2)
+
     if val1 == -1 and val2 == -1:
         print(-1)
     elif val1 == -1:
@@ -42,4 +43,4 @@ if __name__ == "__main__":
     elif val2 == -1:
         print(val1)
     else:
-        print(min(val1,val2))
+        print(min(val1,val2+1))

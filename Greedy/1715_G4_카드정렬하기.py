@@ -10,16 +10,15 @@ if __name__ == "__main__":
         lst = []
         for i in range(n):
             heapq.heappush(lst,int(input()))
-        answer,cnt = 0, 0
+        total_cost, cost = 0, 0
         while True:
-            if len(lst) > 1:
+            if len(lst) <= 1:
+                break
+            else:
                 val1 = heapq.heappop(lst)
                 val2 = heapq.heappop(lst)
-                cnt = val1+val2
-                answer += (cnt)
-                heapq.heappush(lst,cnt)
-                cnt = 0
-            else:
-                break
-
-        print(answer)
+                cost = val1+val2
+                total_cost += (cost)
+                heapq.heappush(lst,cost)
+                cost = 0
+        print(total_cost)
