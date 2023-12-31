@@ -1,17 +1,6 @@
 import sys
 input = sys.stdin.readline
 
-from itertools import permutations
-
-def solution(level,lst):
-    
-    for i in range(n):
-        lst.append(lst1[i])
-        solution()
-        lst.pop(-1)
-
-
-
 if __name__ == "__main__":
     n = int(input())
     lst1 = [i for i in range(1,n+1)]
@@ -22,18 +11,24 @@ if __name__ == "__main__":
     for i in range(n):
         board[lst1[i]-1][lst2[i]-1] = 1
     
-    answer = []
-
-    for i in range(n):
-        for j in range(n):
-            if board[i][j] == 1 and board[j][i] == 1:
-                answer.append(i+1)
-            else:
-                continue
     
-    answer = list(set(answer))
-    answer.sort()
-    print(len(answer))
-    for val in set(answer):
-        print(val)
-             
+    print(board[0][0])
+
+    
+    for i in range(2):
+        end = i
+        t,f = 0,0
+        answer = []
+        while True:
+            if board[t][f] == 1:
+                t = f
+                f = 0
+                answer.append(t)
+                if t == end:
+                    print(answer)
+                    break
+            else:
+                f+=1
+                if f == n:
+                    break
+
