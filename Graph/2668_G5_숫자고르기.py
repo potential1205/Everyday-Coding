@@ -12,9 +12,7 @@ if __name__ == "__main__":
         board[lst1[i]-1][lst2[i]-1] = 1
     
     
-    print(board[0][0])
-
-    
+    print("hello")
     for i in range(2):
         end = i
         t,f = 0,0
