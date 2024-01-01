@@ -2,26 +2,23 @@
 import sys
 input = sys.stdin.readline
 
+import heapq
+
 if __name__ == "__main__":
     n = int(input())
     lst = []
     for i in range(n):
         line = list(map(int,input().split()))
-        lst.append([line[1],line[0]])
-    
-    lst.sort()
-    cnt = 0
-    std = lst[0][0]
-    cnt+=1
+        heapq.heappush(lst,(line[1],line[0]))
 
-    for i in range(1,n):
-        end,start = lst[i]
+
+    cnt = 0
+    std = -1
+    while lst:
+        end,start = heapq.heappop(lst)
         if std <= start:
             cnt+=1
             std = end
-            
-        else:
-            continue
 
 
     print(cnt)
