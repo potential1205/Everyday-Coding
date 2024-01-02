@@ -1,7 +1,5 @@
-
 import sys
 input = sys.stdin.readline
-
 import heapq
 
 if __name__ == "__main__":
@@ -11,7 +9,6 @@ if __name__ == "__main__":
         line = list(map(int,input().split()))
         heapq.heappush(lst,(line[1],line[0]))
 
-
     cnt = 0
     std = -1
     while lst:
@@ -19,6 +16,5 @@ if __name__ == "__main__":
         if std <= start:
             cnt+=1
             std = end
-
 
     print(cnt)
