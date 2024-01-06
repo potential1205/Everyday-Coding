@@ -1,16 +1,12 @@
-
-
-
 if __name__ == "__main__":
     n = int(input())
     balls = input()
 
-    if balls[0] == 'R':
-        temp = 'R'
-    else:
-        temp = 'B'
-    
-    info,cnt = [],1
+    info = []
+
+    temp = 'R' if balls[0] == 'R' else 'B'
+    info, cnt = [], 1
+
     for i in range(1,n):
         if balls[i] == temp:
             cnt+=1
@@ -20,6 +16,7 @@ if __name__ == "__main__":
             temp = balls[i]
 
     info.append(cnt)
+
     s1,s2,s3,s4 = 0,0,0,0
 
     for i in range(len(info)-1):
