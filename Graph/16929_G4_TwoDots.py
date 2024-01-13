@@ -1,13 +1,10 @@
-
-from collections import deque
-
 dx = [1,0,-1,0]
 dy = [0,1,0,-1]
 
-def check(sy,sx,y,x,color,cnt):
+def check(sy,sx,ny,nx,color,cnt):
     
     for i in range(4):
-        ky,kx = y+dy[i],x+dx[i]
+        ky,kx = ny+dy[i],nx+dx[i]
         if ky<0 or ky>=n or kx<0 or kx>=m:
             continue
         
@@ -29,7 +26,8 @@ if __name__ == "__main__":
     for i in range(n):
         for j in range(m):
             sy,sx = i,j
+            ny,nx = i,j
             visit[i][j] = True
-            check(sy,sx,i,j,board[i][j],1)
+            check(sy,sx,ny,nx,board[i][j],1)
 
     print("No")
