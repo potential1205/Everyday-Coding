@@ -2,17 +2,28 @@
 
 if __name__ == "__main__":
     m,n,c1,c2 = map(int,input().split())
+    answer = 0
 
-    result = m*c1 + n*c1
+    rest_val = m + n
+    max_val = max(m,n)
+    min_val = min(m,n)
 
-    cnt = 0
-    y,x = 0,0
-    while True:
-        if y==n or x == m:
-            break
-        y +=1
-        x += 1
-        cnt+=1
-    print(cnt)
+    if (rest_val)%2!=0:
+        max_val -= 1
+        answer += c1
 
+    if 2*c1 >= c2:
+        answer += (min_val*c2)
+        max_val = max_val - min_val
+        min_val = 0
+    else:
+        answer += (min_val*c1*2)
+        max_val = max_val - min_val
+        min_val = 0
 
+    if 2*c1>=2*c2:
+        answer += (max_val*c2)
+    else:
+        answer += (max_val*c1)
+
+    print(answer)
