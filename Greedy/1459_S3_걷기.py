@@ -21,9 +21,6 @@ if __name__ == "__main__":
         max_val = max_val - min_val
         min_val = 0
 
-    if 2*c1>=2*c2:
-        answer += (max_val*c2)
-    else:
-        answer += (max_val*c1)
-
+    answer += (max_val * min(c1, c2))
+    
     print(answer)
