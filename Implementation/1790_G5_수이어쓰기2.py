@@ -1,24 +1,16 @@
 
-
-
-
 if __name__ == "__main__":
     n,k = map(int,input().split())
-    cnt = 0
 
-    temp = n
-    while temp > 0:
-        cnt+=1
-        temp = temp//10
-
+    before_digit = len(list(str(n)))
+    after_digit = 0
     val = 9
-    length = 0
     info = []
 
-    for i in range(1,cnt+1):
+    for i in range(1,before_digit+1):
         if val < n:
             gap = val*i
-            length += gap
+            after_digit += gap
             n = n - (val)
             info.append([val,i])
             val = val*10
@@ -26,12 +18,11 @@ if __name__ == "__main__":
         else:
             break
     
-    length += (cnt*n)
-    info.append([n,cnt])
+    after_digit += (before_digit*n)
+    info.append([n,before_digit])
 
 
-
-    if k > length:
+    if k > after_digit:
         print(-1)
     else:
 
@@ -53,10 +44,7 @@ if __name__ == "__main__":
 
 
         gap_order = k-std_order-1
-
-
         result1 = std_val + (gap_order//std_idx)
-
         result1 = list(str(result1))
 
         print(int(result1[gap_order%std_idx]))
