@@ -1,7 +1,6 @@
 
 from itertools import product
 from collections import deque
-import copy
 from itertools import permutations;
 
 def rotate_90(board):
@@ -20,9 +19,6 @@ dy = [0,0,-1,1,0,0]
 dz = [0,0,0,0,-1,1]
 
 def bfs(cube):
-    if cube[0][0][0] == 0:
-        return 9999
-    
     queue = deque([[0,0,0,0]])
     visit = [[[False for k in range(5)] for j in range(5)] for i in range(5)]
 
@@ -45,39 +41,40 @@ def bfs(cube):
 
 
 if __name__ == "__main__":
-    cube = []
-    for i in range(5):
-        face = []
-        for j in range(5):
-            line = list(map(int,input().split()))
-            face.append(line)
-        cube.append(face)
-    
-    combinations = list(product(range(4), repeat=5))
-    min_move = 9999
+    cube = [[list(map(int, input().split())) for _ in range(5)] for _ in range(5)]
 
+    rotate_face = []
+    for i in range(5):
+        rotate_face_line = []
+        for j in range(4):
+            rotate_face_line.append(rotate_num(cube[i],j))
+        rotate_face.append(rotate_face_line)
+
+
+    #rotate_face[i][j] : i번째 면을 j번 회전시킨 2차원 배열
+
+    rotate_combinations = list(product(range(4), repeat=5))
     layer_combinations = list(permutations(range(5)))
 
-    for i in range(len(combinations)):
-        temp_cube = copy.deepcopy(cube)
-        abc=[]
+    answer = 9999
+    for idx, layer_combination in enumerate(layer_combinations):
+        for jdx, rotate_combination  in enumerate(rotate_combinations):
+            temp_cube = []
+            for k in range(5):
+                temp_cube.append(rotate_face[layer_combination[k]][rotate_combination[k]])
+            
+            if temp_cube[0][0][0] == 0 or temp_cube[4][4][4] == 0:
+                continue
 
-        for j in range(5):
-            f = rotate_num(temp_cube[j],combinations[i][j])
-            abc.append(f)
-        
-        temp_cube = []
-        for l in range(len(layer_combinations)):
-            for j in range(5):
-                lr = layer_combinations[l][j]
-                temp_cube.append(abc[lr])
-
-        if temp_cube[0][0][0] !=0:
             val = bfs(temp_cube)
-            min_move = min(min_move,val)
+            if val == 12:
+                print(12)
+                exit()
 
-    if min_move == 9999:
+            answer = min(answer, val)
+
+    if answer == 9999:
         print(-1)
     else:
-        print(min_move)
+        print(answer)
 
