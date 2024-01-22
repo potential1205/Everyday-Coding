@@ -37,7 +37,7 @@ def bfs(cube):
             queue.append([kz,ky,kx,cnt+1])
             visit[kz][ky][kx] = True
 
-    return 9999
+    return 9999 
 
 
 if __name__ == "__main__":
@@ -70,7 +70,7 @@ if __name__ == "__main__":
             if val == 12:
                 print(12)
                 exit()
-
+                
             answer = min(answer, val)
 
     if answer == 9999:

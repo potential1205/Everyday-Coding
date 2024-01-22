@@ -11,6 +11,7 @@ def cal():
             elif team[i] == 0 and team[j] == 0:
                 team_0 += board[i][j]
     answer = min(answer, abs(team_0-team_1))
+    return
 
 
 def solution(palyer):

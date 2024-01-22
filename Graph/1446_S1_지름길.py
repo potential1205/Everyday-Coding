@@ -19,7 +19,6 @@ def solve(start):
                 heapq.heappush(q,(cost,i[0]))
 
 
-
 if __name__ == "__main__":
     n, d = map(int,input().split())
     graph = [[] for i in range(d+1)]

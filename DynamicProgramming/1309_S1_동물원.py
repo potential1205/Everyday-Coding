@@ -13,6 +13,6 @@ if __name__ == "__main__":
 
         dp[1], dp[2] = 3, 7
         for i in range(3,n+1):
-            dp[i] = (2*dp[i-1] + dp[i-2]) % 9901
+            dp[i] = (2*dp[i-1] + dp[i-2]) % 9901 # 나머지 분배법칙
 
         print(dp[n])

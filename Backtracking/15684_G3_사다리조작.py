@@ -38,7 +38,6 @@ def solution(cnt,bridge,ladder):
                 solution(cnt+1,i,j+2)
                 board[i][j] = False
 
-
 if __name__ == "__main__":
     n,m,h = map(int,input().split())
     board = [[False for j in range(n)] for i in range(h)]

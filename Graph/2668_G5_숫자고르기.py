@@ -20,8 +20,7 @@ if __name__ == "__main__":
         v = int(int(input()))
         graph[v].append(i)
 
-
-
+  
     visit = [False for i in range(n+1)]
     result = []
     for i in range(1,n+1):

@@ -14,18 +14,15 @@ if __name__ == "__main__":
             n = n - (val)
             info.append([val,i])
             val = val*10
-            
         else:
             break
     
     after_digit += (before_digit*n)
     info.append([n,before_digit])
 
-
     if k > after_digit:
         print(-1)
     else:
-
         std_val,std_idx = 0,0
         for i in range(len(info)):
             std_val += info[i][0]*(i+1)
