@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
 dy=[-1,1,0,0]
 dx=[0,0,-1,1]
@@ -32,7 +34,24 @@ if __name__ == "__main__":
         for j in range(len(line)):
             if line[j]==2:
                 spoint.append([i,j])
+                info[i][j] = 0
+            elif line[j] == 0:
+                info[i][j] = -1
+            else:
+                info[i][j] = 0
 
     solve(spoint[0][0],spoint[0][1])
 
-    print(info)
+    for i in range(n):
+        for j in range(m):
+            if info[i][j] == -1:
+                info[i][j] = 0
+            elif info[i][j] == 0:
+                info[i][j] = -1
+
+    info[spoint[0][0]][spoint[0][1]] =0
+    
+    for i in range(n):
+        for j in range(m):
+            print(info[i][j],end=" ")
+        print("")
