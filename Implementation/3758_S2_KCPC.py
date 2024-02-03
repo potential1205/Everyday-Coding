@@ -1,47 +1,40 @@
 
 import heapq
+import sys
+input = sys.stdin.readline
 
 if __name__ == "__main__":
     T = int(input())
     for _ in range(T):
         n,k,t,m = map(int,input().split())
-        info = []
-        for i in range(m):
-            info.append(list(map(int,input().split())))
 
-        team = []
-        team.append(dict())
-
+        team = [dict()]
         for team_num in range(1,n+1):
             team.append(dict())
             team[team_num]["cnt"] = 0
             team[team_num]["last"] = 0
-            for problem_num in range(k):
+            for problem_num in range(1,k+1):
                 team[team_num][problem_num] = 0
 
-
         for i in range(m):
-            team_id, probelm_id, score = info[i]
-            team[team_id]["cnt"]+=1
-            team[team_id]["last"] = i
+            t_id, p_id, score = map(int,input().split())
+            team[t_id]["cnt"] += 1
+            team[t_id]["last"] = i
 
-            if team[team_id][probelm_id-1] < score:
-                team[team_id][probelm_id-1] = score
-        
+            if team[t_id][p_id] < score:
+                team[t_id][p_id] = score
+      
         result = []
-        for i in range(n):
+        for t_id in range(1,n+1):
             cum = 0
-            for j in range(k):
-                cum += team[i+1][j]
+            for j in range(1,k+1):
+                cum += team[t_id][j]
             
-            heapq.heappush(result,[-cum,team[i+1]["cnt"],team[i+1]["last"],i+1])
+            heapq.heappush(result,[-cum,team[t_id]["cnt"],team[t_id]["last"],t_id])
 
-
-        #result.sort(key = lambda x : (-x[0],x[1],x[2]))
-
-        for i in range(n):
-            a = heapq.heappop(result)
-            if a[3] == t:
-                print(i+1)
+        for i in range(1,n+1):
+            line = heapq.heappop(result)
+            if line[3] == t:
+                print(i)
                 break
 
