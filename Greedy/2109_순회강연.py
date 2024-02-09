@@ -1,15 +1,22 @@
 import heapq
 
-n=int(input())
-lst=[]
-for i in range(n):
-  lst.append(list(map(int, input().split())))
+if __name__ == "__main__":
+    n=int(input())
+    lst=[]
+    for i in range(n):
+        cost,day = map(int, input().split())
+        lst.append([day,cost])
 
-lst.sort(key=lambda x: (x[1]))
-p_list=[]
-for i in lst:
-  heapq.heappush(p_list, i[0])
-  if (len(p_list)>i[1]):
-    heapq.heappop(p_list)
+    lst.sort()
 
-print(sum(p_list))
+    result = []
+    for i in range(n):
+        day,cost = lst[i]
+        heapq.heappush(result,cost)
+
+        if day < len(result):
+            heapq.heappop(result)
+          
+    print(sum(result))
+
+
