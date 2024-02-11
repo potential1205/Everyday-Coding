@@ -1,24 +1,16 @@
 
 if __name__ == "__main__":
     n = int(input())
-    arr = [*map(int,input().split())]
+    arr = list(map(int,input().split()))
+    answer = 0
 
-    mem = [0] * 100001
-    e = 0
-    s = 0
-    ret = 0
-    while e < n:
-        if not mem[arr[e]]:
-            mem[arr[e]] +=1
-            e +=1
-        else:
-            ret += (e-s)
-            mem[arr[s]] -= 1
-            s+=1
+    for i in range(n):
+        cnts = [0] * 100001
+        for j in range(i,n):
+            if cnts[arr[j]] == 0:
+                cnts[arr[j]] += 1
+                answer += 1
+            else:
+                break
 
-    ret += ((e-s) * (e-s+1)) // 2
-    print(ret)
-        
-
-
-
+    print(answer)
