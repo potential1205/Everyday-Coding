@@ -1,17 +1,21 @@
 import sys
 input = sys.stdin.readline
+import heapq
 
 if __name__ == "__main__":
     n = int(input())
-    lines = [list(map(int,input().split())) for i in range(n)]
-
-    lines.sort(key = lambda x : (x[0],-x[1]))
-    answer = [lines[0][0],lines[0][1]]
+    lines = []
+    for i in range(n):
+        start,end = map(int,input().split())
+        heapq.heappush(lines,(start,-end))
+    
+    start,end = heapq.heappop(lines)
+    answer = [start,-end]
     result = []
     
-    for i in range(1,len(lines)):
-        start,end = lines[i]
-
+    while lines:
+        start,end = heapq.heappop(lines)
+        end = -end
         if start == answer[0]:
             continue
 
@@ -24,6 +28,4 @@ if __name__ == "__main__":
     
     result.append(answer[1]-answer[0])
     
-
-    print(result)
     print(sum(result))
