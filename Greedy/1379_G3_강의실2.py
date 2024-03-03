@@ -1,36 +1,30 @@
 import heapq
-
+import sys
+input = sys.stdin.readline
 
 if __name__ == "__main__":
     n = int(input())
     lectures = []
     for i in range(n):
-        a,b,c = map(int,input().split())
-        heapq.heappush(lectures,[b,c,a])
+        id,start,end = map(int,input().split())
+        heapq.heappush(lectures,[start,end,id])
 
-    end_time = [0]
-    cnt = 1
-    max_cnt = 0
+    room,ing,result = [],[],[0]*n
+    for i in range(1,n+1):
+        heapq.heappush(room,i)
 
     while lectures:
-        a,b,c = heapq.heappop(lectures)
+        start,end,id = heapq.heappop(lectures)
 
-        if end_time[0] > a:
-            if max_cnt - cnt > 0:
-                cnt+=1
-            else:
-                cnt+=1
-                max_cnt+=1
-        else:
-            while end_time and end_time[0] <= a:
-                end_time.pop(0)
-                cnt-=1
+        while ing and ing[0][0] <= start:
+            end_time, room_num = heapq.heappop(ing)
+            heapq.heappush(room,room_num)
+
+        room_num = heapq.heappop(room)
+        heapq.heappush(ing,(end,room_num))
+        result[id-1] = room_num
+
         
-        print(cnt)
-        cnt+=1
-        end_time.append(b)
-        end_time.sort()
-
-
-    print(max_cnt)
-
+    print(max(result))
+    for val in result:
+        print(val)
